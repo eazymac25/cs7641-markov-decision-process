@@ -41,7 +41,7 @@ if __name__ == '__main__':
 
     seed = args.seed
     if seed is None:
-        seed = np.random.randint(0, (2 ** 32) - 1)
+        seed = np.random.randint(0, (2 ** 31) - 1)
         logger.info("Using seed {}".format(seed))
         np.random.seed(seed)
         rand.seed(seed)
