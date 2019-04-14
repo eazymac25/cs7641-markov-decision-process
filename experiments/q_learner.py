@@ -35,9 +35,9 @@ class QLearnerExperiment(BaseExperiment):
 
         alphas = [0.1, 0.5, 0.9]
         q_inits = ['random', 0]
-        epsilons = [0.1, 0.3, 0.5]
+        epsilons = [0.1, 0.3, 0.5, 0.7]
         epsilon_decays = [0.0001]
-        discount_factors = np.round(np.linspace(0, 0.9, num=10), 2)
+        discount_factors = np.round(np.linspace(0, 0.9, num=5), 2)
         dims = len(discount_factors) * len(alphas) * len(q_inits) * len(epsilons) * len(epsilon_decays)
         self.log("Searching Q in {} dimensions".format(dims))
 

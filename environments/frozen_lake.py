@@ -48,6 +48,23 @@ MAPS = {
         "FHHFFFHFFFFHFFFFFHFF",
         "FHHFHFHFFFFFFFFFFFFF",
         "FFFHFFFFFHFFFFHHFHFG"
+    ],
+    "15x15": [
+        "SFFFFFFFFFFFFFF",
+        "FFFFFFFFFFFFFFF",
+        "FFFFHFFFFFFFFFF",
+        "FFFFHFFFFFFHHFF",
+        "FFFFHFFFFFFFFFF",
+        "HFFFFFFFHHFFFFF",
+        "FFFFFFFFHHFFFFF",
+        "FFFHHFFFFFFFFFF",
+        "FFFFFFFHFFFFFFF",
+        "FFFFFFFFFFFFFFF",
+        "FFFFFFFFFFFHHHH",
+        "FFFHHFFFFFFFFFF",
+        "FFFHFFFFFFFFFFF",
+        "HFFHFFFFFFFFFFF",
+        "HFFFFFHHFFFFFFG",
     ]
 }
 
@@ -134,24 +151,36 @@ class RewardingFrozenLakeEnv(discrete.DiscreteEnv):
                                 newstate = to_s(newrow, newcol)
                                 newletter = desc[newrow, newcol]
                                 done = bytes(newletter) in b'GH'
-                                rew = float(newletter == b'G')
+                                # rew = float(newletter == b'G')
+                                rew = 10 if newletter == b'G' else 0
                                 if self.rewarding:
                                     if newletter == b'F':
                                         rew = self.step_reward
                                     elif newletter == b'H':
                                         rew = self.hole_reward
-                                li.append((1.0 / 3.0, newstate, rew, done))
+                                    else:
+                                        if newletter != b'G':
+                                            rew = self.step_reward
+                                # li.append((1.0 / 3.0, newstate, rew, done))
+                                if b == a:
+                                    li.append((1.0 / 2.0, newstate, rew, done))
+                                else:
+                                    li.append((1.0 / 4.0, newstate, rew, done))
                         else:
                             newrow, newcol = inc(row, col, a)
                             newstate = to_s(newrow, newcol)
                             newletter = desc[newrow, newcol]
                             done = bytes(newletter) in b'GH'
-                            rew = float(newletter == b'G')
+                            # rew = float(newletter == b'G')
+                            rew = 10 if newletter == b'G' else 0
                             if self.rewarding:
                                 if newletter == b'F':
                                     rew = self.step_reward
                                 elif newletter == b'H':
                                     rew = self.hole_reward
+                                else:
+                                    if newletter != b'G':
+                                        rew = self.step_reward
                             li.append((1.0, newstate, rew, done))
 
         super(RewardingFrozenLakeEnv, self).__init__(nS, nA, P, isd)
