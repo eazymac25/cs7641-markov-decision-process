@@ -93,7 +93,7 @@ First move into root of repository
     ```bash
     python run_experiment.py --q [--verbose] [--plot]
     ```
-    
+
 ### Run All Experiments
 ```bash
 python run_experiment.py --all [--verbose] [--plot]

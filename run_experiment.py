@@ -66,11 +66,11 @@ if __name__ == '__main__':
             'name': 'medium_slippery_frozen_lake',
             'readable_name': 'Frozen Lake Slip (15x15)',
         },
-        # {
-        #     'env': environments.get_rewarding_large_frozen_lake(),
-        #     'name': 'large_frozen_lake',
-        #     'readable_name': 'Frozen Lake (20x20)',
-        # },
+        {
+            'env': environments.get_rewarding_large_frozen_lake(),
+            'name': 'large_frozen_lake',
+            'readable_name': 'Frozen Lake (20x20)',
+        },
         {
             'env': environments.get_windy_cliff_walking_environment(),
             'name': 'cliff_walking',
